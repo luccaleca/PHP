@@ -4,9 +4,14 @@
 require_once 'sistema/configuracao.php';
 include_once 'helper.php';
 
+
 echo '<h1>Arquivo index</h1>';
 
-$texto = 'texto para resumir ';
+$texto = '<h1>texto</h1> <p>para resumir</p> ';
+$texto = strip_tags($texto);
+echo "<hr>";
+
+
 $string = 'texto';
 $int = 10;
 $float = 9.99;
@@ -31,5 +36,23 @@ echo '<hr>';
 */
 
 echo resumirTexto($texto, 100, 'continue');
+echo "<hr>";
+
+
+$idade = 20;
+
+$mensagem = ($idade >= 18) ? "Maior de idade" : "Menor de idade";
+
+echo $mensagem;
+
+echo "<hr>";
+
+echo formatarValor(50000000);
+echo "<hr>";
+
+echo formatarNumero(10000);
+
+
+
 
 ?>

@@ -20,11 +20,19 @@ function saudacao(): string {
     return $saudacao;
 }
 
+    /**
+     * 
+     * @param string $texto para resumir
+     * @param int $limite quantidade de caracteres
+     * @param string $continue opcional - o que deve ser exibido ao final do resumo
+     * @return string texto resumido
+     * */  
+
 function resumirTexto(string $texto, int $limite, string $continue = '...') {
 
 
 
-    $textoLimpo = trim($texto);
+    $textoLimpo = trim(strip_tags($texto));
     if(mb_strlen($textoLimpo) <= $limite) {
         return $textoLimpo;
     }
@@ -33,4 +41,18 @@ function resumirTexto(string $texto, int $limite, string $continue = '...') {
     $resumirTexto = mb_substr($textoLimpo, 0, mb_strpos(mb_substr($textoLimpo, 0, $limite), ''));
 
     return $resumirTexto.$continue;
+
+
+
+    
 };
+
+function formatarValor(float $valor): string {
+
+    return number_format($valor,2, ',', '.'); 
+};
+
+function formatarNumero(string $numero = null): string{
+
+    return number_format($numero ?: 0,0,'.', '.');
+}
