@@ -1,4 +1,4 @@
-<?php 
+<?php
 //Arquivo index resposanvel pela inicialização do sistema
 
 require_once 'sistema/configuracao.php';
@@ -52,7 +52,13 @@ echo "<hr>";
 
 echo formatarNumero(10000);
 
+echo "<hr>";
 
+echo contarTempo('2024-01-01 15:16:15');
 
+$url = 'https://unset.';
 
+var_dump(validarUrl ($url));
+echo '<hr>';
+var_dump(validarUrlComFiltro($url));
 ?>
