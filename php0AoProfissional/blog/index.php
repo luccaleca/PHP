@@ -61,4 +61,72 @@ $url = 'https://unset.';
 var_dump(validarUrl ($url));
 echo '<hr>';
 var_dump(validarUrlComFiltro($url));
+
+
+echo '<hr>';
+echo SITE_NOME;
+
+echo '<hr>';
+
+var_dump($_SERVER);
+echo '<hr>';
+var_dump(localhost());
+echo '<hr>';
+
+
+echo url('/teste');
+echo '<hr>';
+
+echo $_SERVER['HTTP_HOST'];
+echo '<hr>';
+
+$meses = [ 2 => 'Janeiro',  //mas ele sempre começa pelo 0
+        'Fevereiro',
+        'Março',
+        'Abril'
+        ];
+
+
+
+
+var_dump($meses);
+echo '<br>';
+echo $meses[2];
+echo '<br>';
+foreach ($meses as $chave => $valor) {
+    echo $chave . ' ';
+}
+echo '<br>';
+echo  saudacao() .' Hoje é ' . dataAtual();
+echo '<hr>';
+
+echo slug('Esse texto é uma string pensanda em se tornar uma url. A idéia é essa.');
+
+echo '<hr>';
+
+
+$numero = 5;
+
+while ($numero < 10) {
+    echo $numero ++;
+}
+
+echo '<br>';
+
+for ($i = 0; $i <= 10; $i++) {
+    
+    $paridade = ($i % 2 ? 'impar' : 'par');
+    
+    
+    echo $i . ' x ' . $i . ' = ' . ($i * $i) . ' ' . $paridade . '<br>';
+}
+
+echo '<hr>';
+
+echo '<h2> Validador de CPF<h2>';
+
+
+
+
+
 ?>

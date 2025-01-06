@@ -7,16 +7,33 @@ function saudacao(): string {
 
      $hora = date('H');
     
-
+    /*
     if ($hora >= 0 && $hora <= 5) {
-        $saudacao = 'boa madrugada';
+        $saudacao = 'Boa madrugada.';
     } else if ($hora >= 6 && $hora <= 12) {
-        $saudacao = 'bom dia';
+        $saudacao = 'Bom dia.';
     } else if ($hora > 12 && $hora <= 18) {
-        $saudacao = 'boa tarde';
+        $saudacao = 'Boa tarde.';
     } else {
-        $saudacao = 'boa noite';
+        $saudacao = 'Boa noite.';
     }
+    */
+
+    switch ($hora) {
+        case $hora >= 0 and $hora <= 5;
+        $saudacao = 'Boa madrugada.';
+        break;
+        case $hora >= 6 and $hora < 12;
+        $saudacao = 'Bom dia.';
+        break;
+        case $hora >= 12 and $hora < 18;
+        $saudacao = 'Boa madrugada.';
+        break;
+        default:  $saudacao = 'Boa noite.';
+    }
+
+    //match so foi introduzido no php 8
+
     return $saudacao;
 }
 
@@ -134,8 +151,80 @@ function validarUrl (string $url): bool {
 }
 
 
+function localhost() {
+
+    $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
+
+    if($servidor == 'localhost') {
+        return true;
+    }
+    return false;
+}
+
+function str_comeca_com($haystack, $needle) {
+    // Verifica se o comprimento do needle é maior que o haystack
+    if (strlen($needle) > strlen($haystack)) {
+        return false;
+    }
+    // Usa substr para extrair o início do haystack e compara com o needle
+    return substr($haystack, 0, strlen($needle)) === $needle;
+}
+
+function url(string $url): string {
+
+    $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
+    $ambiente = ($servidor == 'localhost' ? URL_DESENVOLVIMENTO : URL_PRODUCAO); //verifica se é ambiente de produção pelo termo localhost
+
+    if(str_comeca_com($url, '/')) {
+    return $ambiente.$url;
+    }
+    return $ambiente . '/' .$url;
+}
+
+function dataAtual ():string {
+
+    $diaMes = date('d');
+    $diaSemana = date('w');
+    $mes = date('n') - 1;
+    $ano = date('Y');
+
+    $nomesDiasDaSemana = ['domingo','segunda-feira','terca-feira','quarta-feira','quinta-feira','sexta-feira','sabado'];
+    $nomesDosMeses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio','junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+
+    $dataFormatada = $nomesDiasDaSemana[$diaSemana] . ', ' . $diaMes .  ' de ' . $nomesDosMeses[$mes] . ' de ' . $ano;
+
+    return $dataFormatada;
+}
+
+//A função slug transofrma uma string em um formato que pode ser usado em uma url, função URL amigável
+function slug( string $texto ): string {  
+
+    //substitui caracteres nao são numeros ou letras por hifens
+    $texto = preg_replace('~[^\pL\d]+~u', '-', $texto);
+
+    // Translitera para ASCII. Entao caracteres que tem ascento por exemplo, transformam-se para um caractere mais proximo (é por e, por exemplo)
+    $texto = iconv('utf-8', 'us-ascii//TRANSLIT', $texto);
+
+    // Remove qualquer caractere que nao seja: letra, numero ou -
+    $texto = preg_replace('~[^-\w]+~', '', $texto);
+
+    // Remove hífens duplicados
+    $texto = preg_replace('~-+~', '-', $texto);
+
+    // Remove hífens das extremidades
+    $texto = trim($texto, '-');
+
+    // Converte para minúsculas
+    $texto = strtolower($texto);
+
+    if(empty($texto)) {
+        return 'sem texto';
+    }
+
+    return $texto;
 
 
+}
 
 
 
