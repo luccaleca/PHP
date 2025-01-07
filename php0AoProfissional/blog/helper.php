@@ -226,6 +226,36 @@ function slug( string $texto ): string {
 
 }
 
+function validadorDeCpf($cpf) {
+    //1- limpar o cpf inserido
+    $cpf = preg_replace('/[^0-9]/', '', $cpf);
+
+    //2-verificar se tem 11 digitos
+    if (strlen($cpf) != 11) {
+        return false;
+    }
+
+    //3-verificar se todos os digitos sao iguais
+    if (preg_match('/(\d)\1{10}/', $cpf)) {
+        return false;
+    }
+
+    //4- descobrir os numeros verificadores
+    for ($t = 9; $t < 11; $t++) {   //contar os dois numeros verificadores (posição 9 e 10)
+        $d = 0;
+        for ($c = 0; $c < $t; $c++) {
+            $d += $cpf[$c] * (($t + 1) - $c);   //aqui calcula o produto e a soma
+        }
+        $d = ((10 * $d) % 11) % 10; //calcula o digito verificador
+        if ($cpf[$c] != $d) { //compara com digito o cpf
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+
 
 
 

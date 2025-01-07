@@ -3,6 +3,7 @@
 
 require_once 'sistema/configuracao.php';
 include_once 'helper.php';
+include './sistema/Nucleo/Mensagem.php';
 
 
 echo '<h1>Arquivo index</h1>';
@@ -125,8 +126,23 @@ echo '<hr>';
 
 echo '<h2> Validador de CPF<h2>';
 
+$cpf = "376.219.838-17";
 
+echo "$cpf";
 
+echo '<br>';
+
+if (validadorDeCpf($cpf)) {
+    echo "CPF é válido";
+} else {
+    echo "CPF é inválido";
+}
+echo '<hr>';
+
+$msg = new Mensagem();
+echo $msg -> renderizar();
+echo '<br>';
+var_dump($msg);
 
 
 ?>
