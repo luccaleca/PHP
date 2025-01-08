@@ -1,0 +1,41 @@
+MVC no laravel
+
+Model - é o modelo que representa a camada de dados da aplicação. Responsavel por interagir no banco de dados e realizar operações
+como consultas, inserções, atualizações ou exclusões. No laravel, estão localizados em  app/models
+
+
+View - é responsável por apresentar dados ao usuario. Trate-se da interface da apresentação da aplicação. No laravel, as views estão 
+localizadas em resources/views. Blade é o motor de template do Laravel que permite a apresentação dos dados.
+
+Controller - é responsável por atuar como intermediário entre o model e as views. Ele processa a entrada do usuario, manipula os dados
+através de modelos e seleciona a visão adequada para retornar ao usuario. No laravel, os controllers estão localizados em  app/Http/Controllers.
+Um controlador típico pode ter métodos que lidam com diferentes ações, como mostrar, editar, atualizar e excluir recursos.
+
+Resumo:
+MVC no Laravel separa a aplicação em três componentes principais:
+Model: Responsável pelos dados e lógica de negócio.
+View: Cuida da apresentação do usuário.
+Controller: Intermedia a interação entre modelo e visão.
+
+Ciclo de vida no padrão MVC:
+
+1-Solicitação do Usuário: O usuário faz uma solicitação via navegador.
+2-Roteamento: A solicitação é direcionada pelo sistema de rotas para o controlador apropriado.
+3-Controlador: Processa a solicitação, interage com o modelo, e decide qual vista carregar.
+4-Modelo: Executa operações de dados e retorna resultados ao controlador.
+5-Vista: Recebe dados do controlador e renderiza a resposta.
+6-Resposta: A resposta é enviada de volta ao usuário, completando o ciclo.
+
+
+Ciclo de vida no Laravel:
+
+1-Entrada: A requisição chega e é encaminhada pelo HTTP Kernel.
+2-Middleware: Filtra e manipula a requisição.
+3-Roteamento: Direciona a requisição para o controlador adequado.
+4-Controlador: Processa a lógica de negócio e interage com modelos.
+5-Modelo: Interage com fontes de dados, se necessário.
+6-Resposta: Gera e prepara a resposta (pode incluir renderização de views).
+7-Middleware de Saída: Processa a resposta antes de sua transmissão.
+8-Resposta Final: A resposta é enviada ao cliente.
+
+
