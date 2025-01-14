@@ -1,9 +1,22 @@
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
 <?php
 //Arquivo index resposanvel pela inicialização do sistema
 
+
+
 require_once 'sistema/configuracao.php';
-include_once 'helper.php';
+include_once 'sistema/Nucleo/Helper.php';
 include './sistema/Nucleo/Mensagem.php';
+include './sistema/Nucleo/Exemplo.php';
+include './sistema/Nucleo/Controlador.php';
+
+
+
+
+
 
 
 echo '<h1>Arquivo index</h1>';
@@ -36,7 +49,7 @@ echo resumirTexto($texto, 50);
 echo '<hr>';
 */
 
-echo resumirTexto($texto, 100, 'continue');
+echo \sistema\Nucleo\Helper::resumirTexto($texto, 100, 'continue');
 echo "<hr>";
 
 
@@ -48,20 +61,20 @@ echo $mensagem;
 
 echo "<hr>";
 
-echo formatarValor(50000000);
+echo \sistema\Nucleo\Helper::formatarValor(50000000);
 echo "<hr>";
 
-echo formatarNumero(10000);
+echo \sistema\Nucleo\Helper::formatarNumero(10000);
 
 echo "<hr>";
 
-echo contarTempo('2024-01-01 15:16:15');
+echo \sistema\Nucleo\Helper::contarTempo('2024-01-01 15:16:15');
 
 $url = 'https://unset.';
 
-var_dump(validarUrl ($url));
+var_dump(\sistema\Nucleo\Helper::validarUrl ($url));
 echo '<hr>';
-var_dump(validarUrlComFiltro($url));
+var_dump(\sistema\Nucleo\Helper::validarUrlComFiltro($url));
 
 
 echo '<hr>';
@@ -71,11 +84,11 @@ echo '<hr>';
 
 var_dump($_SERVER);
 echo '<hr>';
-var_dump(localhost());
+var_dump(\sistema\Nucleo\Helper::localhost());
 echo '<hr>';
 
 
-echo url('/teste');
+echo \sistema\Nucleo\Helper::url('/teste');
 echo '<hr>';
 
 echo $_SERVER['HTTP_HOST'];
@@ -98,10 +111,10 @@ foreach ($meses as $chave => $valor) {
     echo $chave . ' ';
 }
 echo '<br>';
-echo  saudacao() .' Hoje é ' . dataAtual();
+echo  \sistema\Nucleo\Helper::saudacao() .' Hoje é ' . \sistema\Nucleo\Helper::dataAtual();
 echo '<hr>';
 
-echo slug('Esse texto é uma string pensanda em se tornar uma url. A idéia é essa.');
+echo \sistema\Nucleo\Helper::slug('Esse texto é uma string pensanda em se tornar uma url. A idéia é essa.');
 
 echo '<hr>';
 
@@ -132,17 +145,42 @@ echo "$cpf";
 
 echo '<br>';
 
-if (validadorDeCpf($cpf)) {
+if (\sistema\Nucleo\Helper::validadorDeCpf($cpf)) {
     echo "CPF é válido";
 } else {
     echo "CPF é inválido";
 }
 echo '<hr>';
 
-$msg = new Mensagem();
-echo $msg -> renderizar();
+use sistema\Nucleo\Mensagem;
+echo (new \sistema\Nucleo\Mensagem)-> sucesso('Mensagem de sucesso')->renderizar();
 echo '<br>';
-var_dump($msg);
+echo (new \sistema\Nucleo\Mensagem)->  erro('Mensagem de erro')->renderizar();
+echo '<br>';
+echo (new \sistema\Nucleo\Mensagem)-> alerta('Mensagem de alerta')->renderizar();
+echo '<br>';
+echo (new \sistema\Nucleo\Mensagem)->  informa('Mensagem de informações')->renderizar();
+echo '<br>';
+echo (new \sistema\Nucleo\Mensagem)-> informa('Outro jeito de puxar metodos')->renderizar();
+echo '<br>';
+echo (new \sistema\Nucleo\Mensagem) ->alerta('Não preciso mais chamar o metodo renderizar');
+echo '<hr>';
+
+use sistema\Nucleo\Exemplo;
+echo (new \sistema\Nucleo\Exemplo) ->definirMensagem('Exemplo de encademaneto de metodos');
+echo '<hr>';
+
+use sistema\Nucleo\Controlador;
+
+new \sistema\Nucleo\Controlador;
+echo '<br>';
+var_dump(new Controlador());
+
+echo '<hr>';
+
+
+
+echo \sistema\Nucleo\Helper::saudacao();
 
 
 ?>
