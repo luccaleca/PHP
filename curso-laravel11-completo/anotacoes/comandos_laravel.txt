@@ -1,0 +1,8 @@
+comandos laravel:
+
+
+php artisan serve - inicia o servidor
+
+php artisan migrate - algo sobre banco de dados
+
+php artisan key:generate - gera uma chave de criptografia para a aplicação

@@ -1,0 +1,9 @@
+vc cria um controller e coloca uma ação, vai no arquivo web.php e cria uma route que vai chamar o controller
+
+blade ele permite que a gente use tags de php que o php puro nao oferece
+
+regra do double moustache: {{$nomeDeVariavel}}  = <?php  echo $nomeDeVariavel ?>
+
+nas views, o padrao html (o menu no caso) se repete em todas as views, entao, como isso acontece
+temos que criar um arquivo layout e importar para a nossas views para diminuir o tamanho dos arquivos
+e nao ficar aquela coisa repetida
