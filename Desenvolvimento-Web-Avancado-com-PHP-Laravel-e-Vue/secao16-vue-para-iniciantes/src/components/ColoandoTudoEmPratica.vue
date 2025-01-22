@@ -1,11 +1,16 @@
 <template>
       <div>
         <h1>Colocando tudo em prática</h1>
-  <div class="borda div-principal"> {{cor}} </div>
+  <div class="borda div-principal" :class="cor"> Cor: {{cor}}
+    <br>
+    Posição X do mouse: {{ posicaoX }}
+    Posição Y do mouse: {{ posicaoY }}
+
+  </div>
       <hr>
     <div @click="mudarCor('verde')" class="borda div-comum" ></div>
-    <div class="borda div-comum" ></div>
-    <div class="borda div-comum" ></div>
+    <div class="borda div-comum" @mouseover="mudarCor('azul')"  @mouseout="mudarCor('vermelho')"></div>
+    <div class="borda div-comum" @mousemove="coordenadas"></div>
     </div>
 </template>
 
@@ -19,16 +24,31 @@ export default defineComponent({
   name:'ColocandoTudoEmPratica',
   setup() {
 
-    const mudarCor = function(c) {
-      cor.value = c
+    const mudarCor = function(novaCor) {
+      cor.value = novaCor
 
     }
 
     const cor = ref('branco')
 
+    const coordenadas = function(e) {
+      console.log(e.clientX, e.clientY)
+      this.posicaoX = e.clientX
+      this.posicaoY = e.clientY
+
+    }
+
+    const posicaoX =ref(0)
+    const posicaoY = ref(0);
+
+
+
     return {
       mudarCor,
-      cor
+      cor,
+      coordenadas,
+      posicaoX,
+      posicaoY
     }
 
   },
@@ -36,7 +56,7 @@ export default defineComponent({
 </script>
 
 
-<style>
+<style scoped>
 
 .borda {
   border: 1px solid black;
@@ -53,6 +73,22 @@ export default defineComponent({
   height: 50px;
   display: inline-block;
   margin: 5px
+}
+
+.branco {
+  background-color: white;
+}
+
+.verde {
+  background-color: green;
+}
+
+.azul {
+  background-color: blue;
+}
+
+.vermelho {
+  background-color: red;
 }
 
 </style>

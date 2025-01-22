@@ -41,9 +41,9 @@ export default defineComponent({
     };
   },
 });
-</script>
+</script >
 
-<style >
+<style scoped>
 
 .verde {
   color: green
